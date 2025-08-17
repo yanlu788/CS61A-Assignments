@@ -13,14 +13,13 @@ def a_plus_abs_b(a, b):
     3
     """
     if b < 0:
-        f = _____
+        b = -b
     else:
-        f = _____
-    return f(a, b)
+        b = b
+    return add(a, b)
 
 def a_plus_abs_b_syntax_check():
     """Check that you didn't change the return statement of a_plus_abs_b.
-
     >>> # You aren't expected to understand the code of this test.
     >>> import inspect, re
     >>> re.findall(r'^\s*(return .*)', inspect.getsource(a_plus_abs_b), re.M)
@@ -42,7 +41,14 @@ def two_of_three(i, j, k):
     >>> two_of_three(5, 5, 5)
     50
     """
-    return _____
+    m = min(i, j, k)
+    if i == m:
+        n = min(j, k)
+    elif j == m:
+        n = min(i, k)
+    else:
+        n = min(i, j)
+    return m * m + n * n
 
 def two_of_three_syntax_check():
     """Check that your two_of_three code consists of nothing but a return statement.
@@ -65,8 +71,10 @@ def largest_factor(n):
     >>> largest_factor(13) # factor is 1 since 13 is prime
     1
     """
-    "*** YOUR CODE HERE ***"
-
+    for i in range(n-1,1,-1):
+        if n%i==0:
+            return i
+    return 1
 
 def hailstone(n):
     """Print the hailstone sequence starting at n and return its
@@ -87,5 +95,13 @@ def hailstone(n):
     >>> b
     1
     """
-    "*** YOUR CODE HERE ***"
+    while n != 1:
+        print(n)
+        if n % 2 == 0:  # 偶数
+            n = n // 2
+        else:  # 奇数
+            n = 3 * n + 1
+        length += 1
+    print(n)  # 打印最后的 1
+    return length
 
