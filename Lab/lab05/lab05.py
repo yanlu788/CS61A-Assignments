@@ -26,7 +26,15 @@ def insert_items(s, before, after):
     >>> large_s3 is large_s
     True
     """
-    "*** YOUR CODE HERE ***"
+    
+    i=0
+    while i<len(s):
+        if s[i]==before:
+            s.insert(i+1,after)
+            i+=2
+        else:
+            i+=1
+    return s
 
 
 def group_by(s, fn):
@@ -40,12 +48,12 @@ def group_by(s, fn):
     {9: [-3, 3], 4: [-2, 2], 1: [-1, 1], 0: [0]}
     """
     grouped = {}
-    for ____ in ____:
-        key = ____
+    for i in s:
+        key = fn(i)
         if key in grouped:
-            ____
+            grouped[key].append(i)
         else:
-            grouped[key] = ____
+            grouped[key] = [i]
     return grouped
 
 
@@ -70,7 +78,13 @@ def count_occurrences(t, n, x):
     >>> count_occurrences(v, 6, 6)
     2
     """
-    "*** YOUR CODE HERE ***"
+    num=0
+    ite=iter(t)
+    while n>0:
+        if next(ite)==x:
+            num+=1
+        n-=1
+    return num
 
 
 def repeated(t, k):
@@ -93,7 +107,18 @@ def repeated(t, k):
     2
     """
     assert k > 1
-    "*** YOUR CODE HERE ***"
+    ite=iter(t)
+    def repea(pre,time):
+        a=next(ite)
+        if a==pre:
+            time+=1
+        else:
+            time=1
+        if a==pre and time==k:
+            return a
+        else:
+            return repea(a,time)
+    return repea(next(ite),1)
 
 
 def sprout_leaves(t, leaves):
